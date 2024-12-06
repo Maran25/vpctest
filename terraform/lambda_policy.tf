@@ -43,6 +43,6 @@ resource "aws_iam_policy" "lambda_policy" {
 
 resource "aws_iam_policy_attachment" "policy_attachment" {
     name = "lambda-policy-attachment"
-    roles = [aws_iam_role.lambda_execution_role.path]
+    roles = [aws_iam_role.lambda_execution_role.name]
     policy_arn = aws_iam_policy.lambda_policy.arn
 }
