@@ -3,7 +3,10 @@ resource "aws_lambda_function" "create_vpc_peering" {
   runtime = "nodejs18.x"
   handler = "lambda_function.handler"
   role = aws_iam_role.lambda_execution_role.arn
-  filename = "${path.module}/lambda_function.zip"
+  # filename = "${path.module}/lambda_function.zip"
+
+  s3_bucket = data.aws_s3_object.lambda_zip.bucket
+  s3_key    = data.aws_s3_object.lambda_zip.key
 
   environment {
     variables = {

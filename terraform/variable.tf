@@ -9,3 +9,9 @@ variable "secret_key" {
   sensitive = true
   description = "aws account secret key"
 }
+
+variable "bucket_name" {
+  type = string
+  sensitive = false
+  description = "name of the bucket"
+}
