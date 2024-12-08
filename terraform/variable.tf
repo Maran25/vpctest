@@ -15,3 +15,9 @@ variable "bucket_name" {
   sensitive = false
   description = "name of the bucket"
 }
+
+variable "account_id" {
+  type = string
+  sensitive = false
+  description = "aws account id"
+}

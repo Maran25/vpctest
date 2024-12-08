@@ -6,7 +6,10 @@
 *.tfplan
 
 # Terraform module cache
+.terraform/**
 .terraform/
+.terraform
+terraform
 
 # Editor and IDE settings
 .vscode/
