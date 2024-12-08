@@ -41,6 +41,16 @@ resource "aws_iam_policy" "lambda_policy" {
         Effect   = "Allow"
         Action   = "s3:GetObject"
         Resource = "arn:aws:s3:::mybucket-for-vpc/testlambda.zip"
+      },
+      {
+        Effect   = "Allow",
+        Action   = ["ec2:CreateVpcPeeringConnection"],
+        Resource = "arn:aws:ec2:eu-north-1:381491871357:vpc/vpc-09d41c0d01c807be5"
+      },
+      {
+        Effect   = "Allow",
+        Action   = ["ec2:DescribeVpcPeeringConnections"],
+        Resource = "*"
       }
     ]
   })
