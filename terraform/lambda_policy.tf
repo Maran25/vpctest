@@ -40,7 +40,7 @@ resource "aws_iam_policy" "lambda_policy" {
       {
         Effect   = "Allow"
         Action   = "s3:GetObject"
-        Resource = "arn:aws:s3:::mybucket-for-vpc/testlamda.zip"
+        Resource = "arn:aws:s3:::mybucket-for-vpc/testlambda.zip"
       }
     ]
   })
