@@ -19,12 +19,4 @@ resource "aws_lambda_event_source_mapping" "sqs_to_lambda" {
   event_source_arn = aws_sqs_queue.sqs_queue.arn
   function_name    = aws_lambda_function.create_vpc_peering.arn
   batch_size       = 10
-
-  filter_criteria {
-    filter {
-      pattern = jsonencode({
-        event = ["CreateVpc"]
-      })
-    }
-  }
 }
