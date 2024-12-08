@@ -49,11 +49,17 @@ exports.handler = async (event) => {
 
 const vpcCreate = async (message) => {
   // Example business logic for processing the message
-  console.log("Parsed message:", parsedMessage);
-  const { vpcId, peerVcpId, peerOwnerId } = parsedMessage.body;
+  console.log("Parsed message:", message);
+  const { vpcId, peerVcpId, peerOwnerId } = message.body;
+  
+  const config = {
+    region: "eu-north-1", 
+  };
+
   const client = new EC2Client(config);
+
   const input = {
-    PeerRegion: "eu-north-1",
+    PeerRegion: config.region,
     VpcId: vpcId,
     PeerVpcId: peerVcpId,
     PeerOwnerId: peerOwnerId,
