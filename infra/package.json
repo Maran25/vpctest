@@ -7,12 +7,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.1234.0",       
-    "@aws-sdk/client-sqs": "^3.0.0", 
-    "uuid": "^9.0.0",            
-    "dotenv": "^16.0.0"
+    "@aws-sdk/client-ec2": "^3.703.0",
+    "@aws-sdk/client-sqs": "^3.0.0",
+    "aws-sdk": "^2.1234.0",
+    "dotenv": "^16.0.0",
+    "uuid": "^9.0.0"
   },
-  "keywords": ["aws", "lambda", "sqs"],
+  "keywords": [
+    "aws",
+    "lambda",
+    "sqs"
+  ],
   "author": "",
   "license": "ISC"
 }
