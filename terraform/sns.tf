@@ -7,6 +7,6 @@ resource "aws_sns_topic_subscription" "queue_url_subscription" {
   endpoint = aws_sqs_queue.sqs_queue.arn
   protocol = "sqs"
   filter_policy = {
-    "event": ["CreateVpc"]
+    "event": "CreateVpc"
   }
 }
