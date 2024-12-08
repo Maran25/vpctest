@@ -1,23 +1,7 @@
-resource "aws_iam_role" "lambda_execution_role" {
-  name = "lambda-execution-role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement: [
-      {
-        Effect: "Allow",
-        Principal: {
-          Service: "lambda.amazonaws.com"
-        },
-        Action: "sts:AssumeRole"
-      }
-    ]
-  })
-}
-
 resource "aws_iam_policy" "lambda_policy" {
   name = "lambda-policy"
   policy = jsonencode({
-    Version: "2012-10-17",
+    Version = "2012-10-17",
     Statement: [
       {
         Effect: "Allow",
@@ -38,23 +22,25 @@ resource "aws_iam_policy" "lambda_policy" {
         Resource: "arn:aws:logs:*:*:*"
       },
       {
-        Effect   = "Allow"
-        Action   = "s3:GetObject"
+        Effect   = "Allow",
+        Action   = "s3:GetObject",
         Resource = "arn:aws:s3:::mybucket-for-vpc/testlambda.zip"
       },
       {
         Effect   = "Allow",
-        Action   = ["ec2:CreateVpcPeeringConnection"],
-        Resource = "arn:aws:ec2:eu-north-1:381491871357:vpc/vpc-09d41c0d01c807be5"
-      },
-      {
-        Effect   = "Allow",
-        Action   = ["ec2:DescribeVpcPeeringConnections"],
-        Resource = "*"
+        Action   = [
+          "ec2:CreateVpcPeeringConnection",
+          "ec2:DescribeVpcPeeringConnections"
+        ],
+        Resource = [
+          "arn:aws:ec2:eu-north-1:381491871357:vpc/vpc-09d41c0d01c807be5",    # Your VPC
+          "arn:aws:ec2:eu-north-1:381491871357:vpc-peering-connection/*"      # VPC peering connection resource
+        ]
       }
     ]
   })
 }
+
 
 resource "aws_iam_policy_attachment" "policy_attachment" {
     name = "lambda-policy-attachment"
