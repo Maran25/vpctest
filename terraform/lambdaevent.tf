@@ -3,7 +3,7 @@ resource "aws_lambda_function" "vpc_event_processor" {
 #   filename         = "your-lambda-code.zip" # Ensure this file exists and is uploaded
   function_name    = "process-vpc-events"
   role             = aws_iam_role.lambda_execution_role.arn
-  handler          = "index.handler"
+  handler          = "eventlambda_function.handler"
   runtime          = "nodejs18.x"
 
   s3_bucket = data.aws_s3_object.lambda_zip.bucket
