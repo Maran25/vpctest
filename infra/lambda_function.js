@@ -19,7 +19,13 @@ exports.handler = async (event) => {
       console.log("Processing message:", message);
 
       // Perform your desired action here (e.g., update a database, call an API, etc.)
-      await processMessage(message);
+      console.log("Message details:", message);
+      const { Message } = message;
+      const parsedMessage = JSON.parse(Message);
+      console.log("Parsed message:", parsedMessage);
+      if (parsedMessage.event === "CreateVpc") {
+        await vpcCreate(parsedMessage);
+      }
 
       // Keep track of processed messages
       processedMessages.push(record.receiptHandle); // Receipt handle is used to delete the message
@@ -41,11 +47,8 @@ exports.handler = async (event) => {
   };
 };
 
-const processMessage = async (message) => {
+const vpcCreate = async (message) => {
   // Example business logic for processing the message
-  console.log("Message details:", message);
-  const { Message } = message;
-  const parsedMessage = JSON.parse(Message);
   console.log("Parsed message:", parsedMessage);
   const { vpcId, peerVcpId, peerOwnerId } = parsedMessage.body;
   const client = new EC2Client(config);
